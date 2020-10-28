@@ -1,0 +1,60 @@
+{% extends "admin/change_list.html" %}
+{% block content_title %}
+{% endblock %}
+{% block result_list %}
+<form method="POST">
+<input type="submit" value="обновить" class="default">
+<div class="results">
+  <table id="result_list">
+  <thead>
+  <tr>
+  <th scope="col" class="action-checkbox-column">
+     <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+     
+  </th>
+  <th scope="col" class="sortable column-username sorted ascending">   
+         <div class="sortoptions">
+           <a class="sortremove" href="?o=" title="Remove from sorting"></a> 
+           <a href="?o=-1" class="toggle ascending" title="Toggle sorting"></a>
+         </div>
+         <div class="text"><a href="?o=-1">Функция</a></div>
+         
+  </th>
+  <th scope="col" class="sortable column-email">
+     <div class="text"><a href="?o=2.1">График</a></div>
+     
+  </th>
+  <th scope="col" class="sortable column-first_name">    
+     <div class="text"><a href="?o=3.1">Интервал t, дней</a></div>
+     
+  </th>
+  <th scope="col" class="sortable column-last_name">
+     <div class="text"><a href="?o=4.1">Шаг t, часы</a></div>
+     
+  </th>
+  <th scope="col" class="sortable column-is_staff">
+     <div class="text"><a href="?o=5.1">Дата обработки</a></div>
+     
+  </th>
+  </tr>
+  </thead>
+  <tbody>
+    {% for t in test %}
+  <tr>
+    <td class="action-checkbox"><input type="checkbox" name="{{ t.id }}" value="1" class="action-select"></td>
+    <th >{{t.fun}}</th>
+    <td ><img src="data:;base64,{{ t.graph }}"  alt="{{ t.graph }}"   height="300px" width="300px" ></td>
+    <td>{{t.interval}}</td>
+    <td >{{t.step}}</td>
+    <td>{{t.actualdate}}</td>
+  </tr>
+    {% endfor %}
+  </tbody>
+
+  </table>
+
+  </div>
+</form>
+
+{% endblock %}
+{% block pagination %}{% endblock %}
