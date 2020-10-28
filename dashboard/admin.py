@@ -22,7 +22,6 @@ class PlotInfoAdmin(admin.ModelAdmin):
 
         else:          
             for one_plot in qs.values(): # иначе обновляем данные для всех функций                
-                convert.apply_async((one_plot['id'],),countdown=1)
-                print("BBBB")
+                convert.apply_async((one_plot['id'],),countdown=1)           
         response.context_data['test']=qs.values() #формируем контекст
         return response
