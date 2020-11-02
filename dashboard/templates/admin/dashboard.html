@@ -43,7 +43,11 @@
   <tr>
     <td class="action-checkbox"><input type="checkbox" name="{{ t.id }}" value="1" class="action-select"></td>
     <th >{{t.fun}}</th>
-    <td ><img src="data:;base64,{{ t.graph }}"  alt="{{ t.graph }}"   height="300px" width="300px" ></td>
+      {% if t.error is True%}
+        <td><b>{{t.graph}}</b></td>
+      {% else %}
+        <td><img src="data:;base64,{{ t.graph }}" alt="{{ t.error }}"  height="300px" width="300px" ></td>      
+      {% endif %}
     <td>{{t.interval}}</td>
     <td >{{t.step}}</td>
     <td>{{t.actualdate}}</td>

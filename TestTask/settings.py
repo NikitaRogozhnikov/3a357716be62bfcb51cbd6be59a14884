@@ -34,7 +34,13 @@ REDIS_HOST='localhost' # redis запускаем на localhost
 REDIS_PORT='6379'
 REDIS_DB=0
 CELERY_BROKER_URL="amqp://rUser:rPass@localhost:5672/myvhost" #используем rabbitmq в качестве брокера
-
+CELERY_RESULT_BACKEND = 'redis://localhost:6379' #устанавливаем Redis для бэкенда результатов
+CELERY_REDIS_HOST = REDIS_HOST
+CELERY_REDIS_PORT = REDIS_PORT
+CELERY_REDIS_DB = REDIS_DB
+CELERY_ACCEPT_CONTENT = ['application/json']  
+CELERY_RESULT_SERIALIZER = 'json'  
+CELERY_TASK_SERIALIZER = 'json'  
 # Application definition
 
 INSTALLED_APPS = [
@@ -80,15 +86,6 @@ WSGI_APPLICATION = 'TestTask.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-'''
-
 
 DATABASES = {
  'default': {
@@ -125,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
